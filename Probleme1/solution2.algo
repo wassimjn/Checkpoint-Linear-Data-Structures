@@ -1,0 +1,42 @@
+ALGORITHM distinct_elements
+
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+     t1 : ARRAY_OF INTEGER[n];
+     t2 : ARRAY_OF INTEGER[z];
+     sum,i,j,c : INTEGER;
+     ch : STRING;
+BEGIN
+    read(t1);
+    read(t2);
+    FOR i FROM 0 TO n-1  DO
+            IF (htab.lookup(t1[i]) = TRUE) THEN
+               c := htab.get(t1[i]);
+               htab.insert(t1[i],c+1);
+             ELSE
+              htab.insert(t1[i],1);
+            END_IF
+    END_FOR
+    FOR j FROM 0 TO z-1 DO
+         IF (htab.lookup(t2[j]) = TRUE) THEN
+               c := htab.get(t2[j]);
+               htab.insert(t2[j],c+1);
+             ELSE
+              htab.insert(t2[j],1);
+            END_IF
+    END_FOR
+
+    FOR i FROM 0 TO n-1  DO
+        IF (htab.get(t1[i])=1) THEN
+           sum:= sum + t1[i];
+        END_IF
+    END_FOR
+     FOR j FROM 0 TO z-1  DO
+        IF (htab.get(t2[j])=1) THEN
+           sum:= sum + t2[j];
+           ch := ch +','+ str(t3[i]);
+        END_IF
+    END_FOR
+  write('Sum of overlapping elements:',sum);
+  write('Common elements are ',ch)
+END

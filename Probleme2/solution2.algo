@@ -1,0 +1,37 @@
+ALGORITHM algorithm_name
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+     t1 : ARRAY_OF INTEGER[n];
+     t2 : ARRAY_OF INTEGER[z];
+     t3 : ARRAY_OF INTEGER[k]; //t3 : ARRAY_OF INTEGER[n+z];
+     sum,c,i,n,z,k : INTEGER;
+     sh,ch: STRING :="";
+   
+BEGIN
+  c=1;
+  FOR i FROM 1 TO n DO
+      t3[c]:=t1[i];
+      k++;//supprimer
+      c++;
+  END_FOR
+  FOR i FROM 1 TO z DO
+      t3[c]:= t2[i];
+      k++;//supprimer
+      c++;
+  END_FOR
+  FOR i FROM 0 TO k-1  DO
+            IF (htab.lookup(t3[i]) = TRUE) THEN
+               c := htab.get(t3[i]);
+               htab.insert(t3[i],c+1);
+             ELSE
+              htab.insert(t3[i],1);
+            END_IF
+    END_FOR
+   FOR i FROM 1 TO k  DO
+        IF (htab.get(t3[i])>1) THEN
+            sum:= sum + (t3[i]*htab.get(t3[i]));
+            ch := ch +','+ str(t3[i]);
+   END_FOR
+  write('Sum of overlapping elements:',sum);
+  write('Common elements are ',ch)
+END

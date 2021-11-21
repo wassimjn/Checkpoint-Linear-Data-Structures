@@ -1,0 +1,34 @@
+ALGORITHM overlapping_elements
+VAR
+    t1                : ARRAY_OF integer[n];
+    t2                : ARRAY_OF integer[z];
+    i,j,sum,sum1,sum2 : integer;
+    ch,sh             :STRING
+
+BEGIN
+  read(n);
+  read(z);
+  sum =0;
+  sum1=0;
+  sum2=0;
+  ch =""
+    FOR i FROM 1 TO n  DO
+        FOR j FROM 1 TO z  DO
+            IF (t1[i]=t2[j]) THEN
+                sum1 := sum1 + t1[i];
+                ch := ch+',' + convch(t1[i],ch) 
+            END_IF
+        END_FOR
+    END_FOR
+    FOR j FROM 1 TO z DO
+        FOR i FROM 1 TO n DO
+            IF (t2[j]=t1[i]) THEN
+                sum2 := sum2 + t2[j];
+                ch := ch+',' + convch(t2[j],sh)
+            END_IF
+        END_FOR
+    END_FOR
+    sum := sum1+sum2;
+    write('Sum of distinct elements is',sum);
+    write (sum,'{Common elements are'ch,'}' )
+END
