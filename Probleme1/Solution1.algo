@@ -13,20 +13,30 @@ BEGIN
   sum2=0;
   ch =""
     FOR i FROM 1 TO n  DO
+    test = false ;
         FOR j FROM 1 TO z  DO
-            IF (t1[i]<>t2[j]) THEN
-                sum1 := sum1 + t1[i];
-                ch := ch+',' + convch(t1[i],ch) 
+            IF (t1[i]=t2[j]) THEN
+               test := true ;
+               break ;
             END_IF
+         
         END_FOR
+        if test = false then 
+              sum1 := sum1 + t1[i];
+              ch := ch+',' + convch(t1[i],ch) 
     END_FOR
     FOR j FROM 1 TO z DO
+    test = false ;
         FOR i FROM 1 TO n DO
-            IF (t2[j]<>t1[i]) THEN
-                sum2 := sum2 + t2[j];
-                ch := ch+',' + convch(t2[j],sh)
+            IF (t2[j]=t1[i]) THEN
+               test := true ;
+               break ;
             END_IF
+         
         END_FOR
+        if test = false then 
+              sum1 := sum1 + t2[j];
+              ch := ch+',' + convch(t2[j],ch) 
     END_FOR
     sum := sum1+sum2;
     write('Sum of distinct elements is',sum);
